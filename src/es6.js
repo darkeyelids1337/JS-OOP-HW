@@ -14,9 +14,7 @@ function fioToName(fio) {
 // уникальные элементы
 // присмотритесь к коллекции "Set"
 function filterUnique(array) {
-    const arrSet = new Set();
-    array.forEach((item)  => arrSet.add(item));
-    return Array.from(arrSet);
+    return [...new Set(array)];
 }
 
 
@@ -26,13 +24,7 @@ function filterUnique(array) {
 // сотрудника превышает зарплату самого низкооплачиваемого
 // присмотритесь к методу .reduce
 function calculateSalaryDifference(array) {
-    let min = 1;
-    return array.length === 0 ? false : array.reduce((acc,item) => {
-        if(acc < item){
-            acc = item;
-        } else min = item;
-        return acc / min;
-    },0);
+    return array.length === 0 ? false : array.reduce((acc,item) => acc < item ? item : acc,0) / Math.min(...array);
 }
 
 // Реализуйте класс "словарь слов" (как толковый словарь)
